@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>笔记详细信息</title>
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        td{
+            text-align: center;
+            padding-top: 2%;
+            padding-bottom: 2%;
+        }
+    </style>
+</head>
+<body>
+<table border="1px" cellspacing="0">
+    <thead>
+    <tr>
+        <th colspan="2">
+            <h3>用户笔记</h3>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td width="20%">记录人</td>
+        <td>{$note.username}</td>
+    </tr>
+    <tr>
+        <td>记录时间</td>
+        <td>{$note.create_time}</td>
+    </tr>
+    <tr>
+        <td>笔记标题</td>
+        <td>{$note.title}</td>
+    </tr>
+    <tr>
+        <td>笔记内容</td>
+        <td>{$note.content}</td>
+    </tr>
+
+
+    </tbody>
+</table>
+
+</body>
+</html>

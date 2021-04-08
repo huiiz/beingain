@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>收藏详细信息</title>
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        td{
+            text-align: center;
+            padding-top: 2%;
+            padding-bottom: 2%;
+        }
+    </style>
+</head>
+<body>
+<table border="1px" cellspacing="0">
+    <thead>
+    <tr>
+        <th colspan="2">
+            <h3>用户收藏</h3>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td width="20%">收藏人</td>
+        <td>{$collection.username}</td>
+    </tr>
+    <tr>
+        <td>收藏时间</td>
+        <td>{$collection.create_time}</td>
+    </tr>
+    <tr>
+        <td>帖子主题</td>
+        <td>{$collection.subject}</td>
+    </tr>
+    <tr>
+        <td>帖子内容</td>
+        <td>{$content}</td>
+    </tr>
+
+    </tbody>
+</table>
+
+</body>
+</html>

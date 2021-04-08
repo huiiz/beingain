@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>管理员管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  {load href="/static/layuiadmin/layui/css/layui.css" /}
+</head>
+<body>
+
+  <div class="layui-form" lay-filter="layuiadmin-form-admin" id="layuiadmin-form-admin" style="padding: 20px 30px 0 0;">
+    {if $type == "edit"}
+    <div class="layui-form-item">
+      <label class="layui-form-label">ID</label>
+      <div class="layui-input-inline">
+        <input type="text" name="id" value="{$adminuser.id}" lay-verify="required" placeholder="请输入管理员ID" autocomplete="off" class="layui-input" disabled>
+      </div>
+    </div>
+    {/if}
+    <div class="layui-form-item">
+      <label class="layui-form-label">用户名</label>
+      <div class="layui-input-inline">
+        <input type="text" name="username" value="{$adminuser.username}" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">邮箱</label>
+      <div class="layui-input-inline">
+        <input type="email" name="email" value="{$adminuser.email}" lay-verify="email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">昵称</label>
+      <div class="layui-input-inline">
+        <input type="text" name="nickname" value="{$adminuser.nickname}" lay-verify="nickname" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    {if $type == "add"}
+    <div class="layui-form-item">
+      <label class="layui-form-label">密码</label>
+      <div class="layui-input-inline">
+        <input type="text" name="password" value="" lay-verify="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">邀请码</label>
+      <div class="layui-input-inline">
+        <input type="text" name="invite" value="" lay-verify="invite" placeholder="请输入邀请码" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    {/if}
+    <div class="layui-form-item layui-hide">
+      <input type="button" lay-submit lay-filter="LAY-user-back-submit" id="LAY-user-back-submit" value="确认">
+    </div>
+  </div>
+
+  {load href="/static/layuiadmin/layui/layui.js" /}
+  <script>
+  layui.config({
+    base: '/static/layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'form'], function(){
+    var $ = layui.$
+    ,form = layui.form ;
+  })
+  </script>
+</body>
+</html>

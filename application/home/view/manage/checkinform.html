@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打卡详细信息</title>
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        td{
+            text-align: center;
+            padding-top: 2%;
+            padding-bottom: 2%;
+        }
+    </style>
+</head>
+<body>
+<table border="1px" cellspacing="0">
+    <thead>
+        <tr>
+            <th colspan="2">
+                <h3>每日打卡</h3>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td width="20%">打卡人</td>
+            <td>{$checkin.username}</td>
+        </tr>
+        <tr>
+            <td>打卡日期</td>
+            <td>{$checkin.day}</td>
+        </tr>
+        <tr>
+            <td>打卡时间</td>
+            <td>{$checkin.create_time}</td>
+        </tr>
+        <tr>
+            <td>打卡内容</td>
+            <td>{$checkin.content}</td>
+        </tr>
+        <tr>
+            <td>打卡IP</td>
+            <td>{$checkin.ip}</td>
+        </tr>
+        <tr>
+            <td>打卡设备</td>
+            <td>{$checkin.agent}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+</body>
+</html>

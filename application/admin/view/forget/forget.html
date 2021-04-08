@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>忘记密码 - Beingain云自习室 后台管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    {load href="/static/layuiadmin/layui/css/layui.css" /}
+    {load href="/static/layuiadmin/style/admin.css" /}
+    {load href="/static/layuiadmin/style/login.css" /}
+</head>
+
+<div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
+    <div class="layadmin-user-login-main">
+        <div class="layadmin-user-login-box layadmin-user-login-header">
+            <h2>管理员找回密码</h2>
+            <p>Beingain云自习室-后台管理系统</p>
+        </div>
+        <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+
+            <script type="text/html" template>
+                {{# if(layui.router().search.type === 'resetpass'){ }}
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+                    <input type="password" name="password" id="LAY-user-login-password" lay-verify="pass" placeholder="新密码" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-repass"></label>
+                    <input type="password" name="repass" id="LAY-user-login-repass" lay-verify="required" placeholder="确认密码" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-forget-resetpass">重置新密码</button>
+                </div>
+                <div class="layui-trans layui-form-item layadmin-user-login-other">
+                    <a href="../admin/login.html" class="layadmin-user-jump-change layadmin-link layui-hide-xs">登录</a>
+                </div>
+                {{# } else { }}
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
+                    <input type="text" name="username" id="LAY-user-login-username" lay-verify="username" placeholder="请输入用户名" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-email" for="LAY-user-login-email"></label>
+                    <input type="email" name="email" id="LAY-user-login-email" lay-verify="email" placeholder="请输入注册时的邮箱" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-phone"></label>
+                    <input type="tel" name="phone" id="LAY-user-login-phone" lay-verify="phone" placeholder="请输入注册时的电话号码" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-senior" for="LAY-user-login-username"></label>
+                    <input type="text" name="changecode" id="LAY-user-login-code" lay-verify="changecode" placeholder="请输入权限码(联系管理员获得)" class="layui-input">
+                </div>
+
+
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-forget-submit">找回密码</button>
+                </div>
+                {{# } }}
+            </script>
+
+        </div>
+    </div>
+
+    <div class="layui-trans layadmin-user-login-footer">
+
+        <p>©2020 <a href="#" target="_blank">Beingain云自习室</a>版权所有</p>
+
+    </div>
+
+</div>
+
+{load href="/static/layuiadmin/layui/layui.js" /}
+<script>
+    layui.config({
+        base: '../static/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'user'], function(){
+        var $ = layui.$
+            ,setter = layui.setter
+            ,admin = layui.admin
+            ,form = layui.form
+            ,router = layui.router();
+
+        form.render();
+
+        //找回密码下一步
+        form.on('submit(LAY-user-forget-submit)', function(obj){
+            var field = obj.field;
+
+            //请求接口
+            admin.req({
+                url: '/admin/forget/check' //实际使用请改成服务端真实接口
+                ,data: field
+                ,done: function(res){
+                    location.hash = '/type=resetpass';
+                    location.reload();
+                }
+            });
+
+            return false;
+        });
+
+        //重置密码
+        form.on('submit(LAY-user-forget-resetpass)', function(obj){
+            var field = obj.field;
+
+            //确认密码
+            if(field.password !== field.repass){
+                return layer.msg('两次密码输入不一致');
+            }
+
+            //请求接口
+            admin.req({
+                url: layui.setter.base + 'json/user/resetpass.js' //实际使用请改成服务端真实接口
+                ,data: field
+                ,done: function(res){
+                    layer.msg('密码已成功重置', {
+                        offset: '15px'
+                        ,icon: 1
+                        ,time: 1000
+                    }, function(){
+                        location.href = 'login.html'; //跳转到登入页
+                    });
+                }
+            });
+
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

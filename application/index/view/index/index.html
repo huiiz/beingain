@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+        button{
+            /*width: 300px;*/
+            height: 100px;
+            font-size: 50px;
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Beingain云自习室</h1>
+    <hr>
+<button type="button" onclick="admin()">转跳到后台</button><br /><br /><br />
+<button type="button" onclick="book()">转跳到项目文档</button>
+<hr>
+<h5 style="text-align: center;">备案号：陇ICP备2020003747号</h5>
+<script>
+    function admin() {
+        location.href='/admin';
+    };
+    function book() {
+        location.href='https://www.showdoc.cc/beingain';
+    }
+</script>
+</body>
+</html>
